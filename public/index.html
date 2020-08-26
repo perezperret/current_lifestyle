@@ -1,0 +1,66 @@
+<html>
+  <head>
+    <title>Retirement calculator</title>
+
+    <link rel="stylesheet" href="stylesheet.css">
+  </head>
+  <body>
+    <div class="container">
+      <h1 class="title">Current lifestyle retirement benchmark calculator</h1>
+
+      <p class="content">
+        Built by <a href="https://perezperret.com">perezperret</a>,
+        using <a href="https://vercel.com">Vercel</a>
+        serverless <a href="https://www.python.org/">Python</a> functions.
+        Check out the source on <a href="https://github.com/perezperret/current_lifestyle">GitHub</a>.
+      </p>
+
+      <p class="content">
+        Use your current lifestyle as a benchmark for your retirement savings.
+      </p>
+
+      <form class="form" id="payment-form" action="api/payment">
+        <div class="form_group">
+          <label class="form_group_label" for="#current_monthly_expenses">How much do you spend per month?</label>
+          <input class="form_group_input" value="4000" type="text" name="current_monthly_expenses" id="current_monthly_expenses">
+        </div>
+
+        <div class="form_group">
+          <label class="form_group_label" for="#annual_inflation">Annual inflation estimate (0-100%)</label>
+          <input class="form_group_input" value="2" type="text" name="annual_inflation" id="annual_inflation">
+        </div>
+
+        <div class="form_group">
+          <label class="form_group_label" for="#saving_years">How many years until you retire?</label>
+          <input class="form_group_input" value="35" type="text" name="saving_years" id="saving_years">
+        </div>
+
+        <div class="form_group">
+          <label class="form_group_label" for="#saving_annual_return">Investment return estimate while saving (0-100%)</label>
+          <input class="form_group_input" value="7" type="text" name="saving_annual_return" id="saving_annual_return">
+        </div>
+
+        <div class="form_group">
+          <label class="form_group_label" for="#retirement_years">How long do you expect to live in retirement?</label>
+          <input class="form_group_input" value="20" type="text" name="retirement_years" id="retirement_years">
+        </div>
+
+        <div class="form_group">
+          <label class="form_group_label" for="#retirement_annual_return">Investment return estimate while retired (0-100%)</label>
+          <input class="form_group_input" value="3" type="text" name="retirement_annual_return" id="retirement_annual_return">
+        </div>
+
+        <div class="form_group">
+          <label class="form_group_label" for="#initial_investment">How much do you have saved already?</label>
+          <input class="form_group_input" value="0" type="text" name="initial_investment" id="initial_investment">
+        </div>
+
+        <input class="form_submit" type="submit" name="payment" value="Calculate retirement">
+      </form>
+
+      <div class="code-preview" id="result-preview"></div>
+    </div>
+
+    <script type="text/javascript" src="script.js"></script>
+  </body>
+</html>
