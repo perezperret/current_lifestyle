@@ -52,5 +52,5 @@ class handler(BaseHTTPRequestHandler):
         #     retirement_annual_return = 0.03,
         #     initial_investment = 0)
 
-        self.wfile.write(json.dumps({ 'hello': 'world' }))
+        self.wfile.write(json.dumps({ 'hello': 'world' }).encode())
         return
