@@ -1,66 +1,175 @@
 <html>
   <head>
-    <title>Retirement calculator</title>
+    <title>Current Lifestyle Retirement</title>
 
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="stylesheet.css">
   </head>
   <body>
     <div class="container">
-      <h1 class="title">Current lifestyle retirement benchmark calculator</h1>
+      <h1>Current Lifestyle Retirement</h1>
 
-      <p class="content">
-        Built by <a href="https://perezperret.com">perezperret</a>,
-        using <a href="https://vercel.com">Vercel</a>
-        serverless <a href="https://www.python.org/">Python</a> functions.
-        Check out the source on <a href="https://github.com/perezperret/current_lifestyle">GitHub</a>.
-      </p>
+      <div class="content">
+        <p>
+          A simple benchmark to get started saving for retirement. If you want to
+          get serious about saving, check out
+          <a href="https://pocketpatch.io">pocketpatch</a>.
+        </p>
+      </div>
 
-      <p class="content">
-        Use your current lifestyle as a benchmark for your retirement savings.
-      </p>
+      <hr>
 
       <form class="form" id="payment-form" method="POST" action="api/payment">
-        <div class="form_group">
-          <label class="form_group_label" for="#current_monthly_expenses">How much do you spend per month?</label>
-          <input class="form_group_input" value="4000" type="text" name="current_monthly_expenses" id="current_monthly_expenses">
+        <div class="content content--lg">
+          <div class="mb-md">
+            I currently spend
+            <div class="input-group input-group--md">
+              <input required class="input-group__input" value="2000" type="number" name="current_monthly_expenses" id="current_monthly_expenses" />
+              <div class="input-group__text">$</div>
+            </div>
+            per month.
+          </div>
+
+          <div class="mb-md">
+            I already have
+            <div class="input-group input-group--md">
+              <input class="input-group__input" value="0" type="text" name="initial_investment" id="initial_investment">
+              <div class="input-group__text">$</div>
+            </div>
+            saved towards retirement.
+          </div>
+
+          <div class="mb-md">
+            I want to retire in about
+            <div class="input-group input-group--md">
+              <input class="input-group__input" value="35" type="text" name="saving_years" id="saving_years">
+              <div class="input-group__text">years</div>
+            </div>.
+          </div>
+
+          <div class="mb-md">
+            I expect to live around
+            <div class="input-group input-group--md">
+              <input class="input-group__input" value="20" type="text" name="retirement_years" id="retirement_years">
+              <div class="input-group__text">years</div>
+            </div>
+            in retirement.
+          </div>
         </div>
 
-        <div class="form_group">
-          <label class="form_group_label" for="#annual_inflation">Annual inflation estimate (0-100%)</label>
-          <input class="form_group_input" value="2" type="text" name="annual_inflation" id="annual_inflation">
-        </div>
+        <hr>
 
-        <div class="form_group">
-          <label class="form_group_label" for="#saving_years">How many years until you retire?</label>
-          <input class="form_group_input" value="35" type="text" name="saving_years" id="saving_years">
-        </div>
+        <div class="content">
+          <h2>Assuming</h2>
 
-        <div class="form_group">
-          <label class="form_group_label" for="#saving_annual_return">Investment return estimate while saving (0-100%)</label>
-          <input class="form_group_input" value="7" type="text" name="saving_annual_return" id="saving_annual_return">
-        </div>
+          <div class="row">
+            <div class="col-1 md_col-1-3 flex-row align-center md_flex-col md_align-start mb-sm">
+              <label class="mr-md md_mr-0" for="#annual_inflation">Inflation</label>
+              <div class="input-group input-group--md md_input-group--full">
+                <input class="input-group__input" value="2" type="text" name="annual_inflation" id="annual_inflation">
+                <div class="input-group__text">%</div>
+              </div>
+            </div>
 
-        <div class="form_group">
-          <label class="form_group_label" for="#retirement_years">How long do you expect to live in retirement?</label>
-          <input class="form_group_input" value="20" type="text" name="retirement_years" id="retirement_years">
-        </div>
+            <div class="col-1 md_col-1-3 flex-row align-center md_flex-col md_align-start mb-sm">
+              <label class="mr-md md_mr-0" for="#saving_annual_return">Pre-retirement return</label>
+              <div class="input-group input-group--md md_input-group--full">
+                <input class="input-group__input" value="7" type="text" name="saving_annual_return" id="saving_annual_return">
+                <div class="input-group__text">%</div>
+              </div>
+            </div>
 
-        <div class="form_group">
-          <label class="form_group_label" for="#retirement_annual_return">Investment return estimate while retired (0-100%)</label>
-          <input class="form_group_input" value="3" type="text" name="retirement_annual_return" id="retirement_annual_return">
-        </div>
+            <div class="col-1 md_col-1-3 flex-row align-center md_flex-col md_align-start mb-sm">
+              <label class="mr-md md_mr-0" for="#retirement_annual_return">Post-retirement return</label>
+              <div class="input-group input-group--md md_input-group--full">
+                <input class="input-group__input" value="4.5" type="text" name="retirement_annual_return" id="retirement_annual_return">
+                <div class="input-group__text">%</div>
+              </div>
+            </div>
+          </div>
 
-        <div class="form_group">
-          <label class="form_group_label" for="#initial_investment">How much do you have saved already?</label>
-          <input class="form_group_input" value="0" type="text" name="initial_investment" id="initial_investment">
-        </div>
+          <div class="content content--lg my-md" id="result-preview"></div>
 
-        <input class="form_submit" type="submit" name="payment" value="Calculate retirement">
+          <div class="row">
+            <div class="col-1-2">
+              <input class="button" type="submit" name="payment" value="Calculate retirement">
+            </div>
+          </div>
+        </div>
       </form>
 
-      <div class="code-preview" id="result-preview"></div>
-    </div>
+      <hr>
 
+      <div class="content">
+        <h2>Why should you do this?</h2>
+
+        <p>
+          This is an exercise to create a benchmark for your retirement saving targets.
+        </p>
+
+        <p>
+          It's important to emphazise that these sort of calculators make a lot
+          of assumptions that might not hold in the future, so take the results
+          with a grain of salt.
+        </p>
+
+        <p>
+          The idea behind this is simple: you should save as much as possible for
+          retirement, BUT, you also have to live now, so saving enough to cover your
+          current expenses in retirement (under reasonable assumptions) should give
+          you some peace of mind.
+        </p>
+
+        <p>
+          This should be only a baseline, something to help you get started.
+        </p>
+
+        <h2>How does it work?</h2>
+
+        <p>
+          By default we assume <strong>7%</strong> returns on your investments while
+          saving, which is roughly what a US equities market ETF has historically
+          returned, <strong>4.5%</strong> return after retirement (shifting to a more
+          conservative bond market ETF) and <strong>2%</strong> inflation, which
+          is a rough average for the US in the past 25 years.
+        </p>
+
+        <p>
+          From your monthly expenses, we calculate an equivalent, adjusted for inflation,
+          for the time you expect to retire.
+        </p>
+
+        <p>
+          From that monthly payout, we calculate a fund that can give you that payout
+          throughout the duration of your retirement, given the assumed post-retirement
+          return on investment and inflation.
+        </p>
+
+        <p>
+          Finally we calculate how much you would need to invest each month to build
+          up the required fund, with the assumed rate of return after retirement and inflation.
+        </p>
+
+        <h2>About</h2>
+
+        <p>
+          Built by <a href="https://perezperret.com">perezperret</a>,
+          using <a href="https://vercel.com">Vercel</a>
+          serverless <a href="https://www.python.org/">Python</a> functions.
+        </p>
+
+        <p>
+          Have a look at my
+          <a href="https://perezperret.com/blog">blog</a>
+          where I occasionally write about personal finance.
+        </p>
+
+        <p>
+          Check out the source code on
+          <a href="https://github.com/perezperret/current_lifestyle">GitHub</a>.
+        </p>
+      </div>
+    </div>
     <script type="text/javascript" src="script.js"></script>
   </body>
 </html>
