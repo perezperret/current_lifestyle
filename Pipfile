@@ -4,5 +4,5 @@ verify_ssl = true
 name = "pypi"
  
 [packages]
-flask = "1.0.2"
+flask = "3.0.3"
 numpy-financial = "1.0.0"
